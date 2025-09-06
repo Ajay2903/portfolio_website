@@ -1,16 +1,23 @@
 "use client"
-
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Github, Linkedin, Mail, ExternalLink, Menu } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-
+import ThemeToggle from "../components/theme-toggle"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+
+export type BlogMeta = {
+  title: string
+  date: string
+  description: string
+  slug: string
+}
 
 export default function Portfolio() {
+  const [blogs, setBlogs] = useState<BlogMeta[]>([])
   useEffect(() => {
     // Handle smooth scrolling for anchor links
     const handleAnchorClick = (e:any) => {
@@ -27,13 +34,21 @@ export default function Portfolio() {
         }
       }
     }
-
+    
     // Add event listeners to all anchor links
     const anchorLinks = document.querySelectorAll('a[href^="#"]')
     anchorLinks.forEach((anchor) => {
       anchor.addEventListener("click", handleAnchorClick)
     })
-
+    fetch("/api/blogs")
+      .then(res => res.json())
+      .then((data: BlogMeta[]) => {
+        const latest = data.slice(0, 3)
+        setBlogs(latest)
+      })
+      .catch((error) => {
+        console.error("Failed to fetch blogs:", error);
+      });
     // Cleanup
     return () => {
       anchorLinks.forEach((anchor) => {
@@ -41,6 +56,7 @@ export default function Portfolio() {
       })
     }
   }, [])
+   
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -53,6 +69,9 @@ export default function Portfolio() {
             <nav className="flex items-center space-x-6 text-sm font-medium">
               <Link href="#about" className="transition-colors hover:text-foreground/80">
                 About
+              </Link>
+              <Link href="/blogs" className="transition-colors hover:text-foreground/80">
+               Blogs
               </Link>
               <Link href="#skills" className="transition-colors hover:text-foreground/80">
                 Skills
@@ -74,13 +93,17 @@ export default function Portfolio() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left">
+                <SheetTitle className="mb-6 text-lg font-bold">Menu</SheetTitle>
                 <Link href="/" className="flex items-center">
-                  <span className="font-bold">John Doe</span>
+                  <span className="font-bold">Ajay Tibrewal</span>
                 </Link>
                 <nav className="mt-6 flex flex-col space-y-4">
                   <Link href="#about" className="text-lg font-medium">
                     About
                   </Link>
+                  <Link href="/blogs" className="text-lg font-medium">
+               Blogs
+              </Link>
                   <Link href="#skills" className="text-lg font-medium">
                     Skills
                   </Link>
@@ -94,6 +117,8 @@ export default function Portfolio() {
               </SheetContent>
             </Sheet>
             <nav className="flex items-center">
+                           <ThemeToggle />
+
               <Link href="https://github.com/Ajay2903" target="_blank" rel="noreferrer" className="p-2">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
@@ -130,6 +155,8 @@ export default function Portfolio() {
                   alt="Profile"
                   width={400}
                   height={400}
+
+                  
                   className="rounded-full object-cover border-4 border-border"
                   priority
                 />
@@ -274,6 +301,28 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
+        <section id="blog" className="w-full py-12 md:py-24 lg:py-32">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Blogs</h2>
+            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+              Some of my latest writings and thoughts.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-6 sm:grid-cols-1 md:grid-cols-3">
+            {blogs.map((blog) => (
+              <article key={blog.slug} className="border p-6 rounded-lg hover:shadow-md transition-shadow">
+                <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
+                <time className="block mb-2 text-gray-500">{new Date(blog.date).toLocaleDateString()}</time>
+                <p className="text-muted-foreground">{blog.description}</p>
+                <Link href={`/blogs/${blog.slug}`} className="mt-4 inline-block text-blue-600 hover:underline">
+                  Read more →
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
         <section id="projects" className="w-full py-12 md:py-24 lg:py-32 bg-muted/40">
           <div className="container px-4 md:px-6 mx-auto">
@@ -404,7 +453,7 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
-
+        
         <section id="contact" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
