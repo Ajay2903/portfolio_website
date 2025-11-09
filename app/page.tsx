@@ -375,34 +375,34 @@ export default function Portfolio() {
                 <Card>
                   <CardHeader>
                     <Image
-                      src="/todo.png?height=200&width=400"
+                      src="/climapure.png?height=200&width=400"
                       alt="Project 2"
                       width={400}
                       height={200}
                       className="rounded-md object-cover"
                     />
-                    <CardTitle className="mt-4">To-Do Website</CardTitle>
-                    <CardDescription>Full Stack TODO app </CardDescription>
+                    <CardTitle className="mt-4">ClimaPure</CardTitle>
+                    <CardDescription>Responsive Weather & AQI Dashboard </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      <Badge variant="outline">Next.js</Badge>
-                      <Badge variant="outline">Go</Badge>
-                      <Badge variant="outline">Supabase</Badge>
-                      <Badge variant="outline">Render</Badge>
+                      <Badge variant="outline">Vue.js</Badge>
+                      <Badge variant="outline">Tailwind CSS</Badge>
+                      <Badge variant="outline">Google Maps API</Badge>
+                
                     </div>
                     <p className="text-sm text-muted-foreground">
-                    Build a Task app, with Next.js frontend, Go backend, and Supabase (Postgres) database. Showcasing modern full-stack development and robust performance.
+                   Developed a performant dashboard in Vue/Tailwind, integrating live weather and AQI data with secure, dynamic Google Maps API utilization.Solved complex, progressive layout challenges, implementing a dynamic 2-to-3 column grid for pixel-perfect, tailored display from mobile to ultrawide screens.
                     </p>
                   </CardContent>
                   <CardFooter className="flex justify-between">
-                    <Link href="https://github.com/Ajay2903/my-todo-backend" target="_blank" rel="noreferrer">
+                    <Link href="https://github.com/Ajay2903/MapQI" target="_blank" rel="noreferrer">
                       <Button variant="outline" size="sm">
                         <Github className="mr-2 h-4 w-4" />
                         Code
                       </Button>
                     </Link>
-                    <Link href="https://my-todo-frontend-2e71vyhya-ajay-tibrewals-projects.vercel.app/" target="_blank" rel="noreferrer">
+                    <Link href="https://map-qi.vercel.app/" target="_blank" rel="noreferrer">
                       <Button size="sm">
                         <ExternalLink className="mr-2 h-4 w-4" />
                         Demo
