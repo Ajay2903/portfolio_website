@@ -28,6 +28,7 @@ export type BlogMeta = {
 }
 
 export default function Portfolio() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [blogs, setBlogs] = useState<BlogMeta[]>([])
   useEffect(() => {
     // Handle smooth scrolling for anchor links
@@ -67,7 +68,7 @@ export default function Portfolio() {
       })
     }
   }, [])
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+ 
 
   const navItems = [
     { name: "About", link: "#about" },
@@ -88,7 +89,7 @@ export default function Portfolio() {
             </Link> */}
             <Navbar>
         {/* Desktop Navigation */}
-        <NavBody className="flex w-full items-center justify-between">
+        <NavBody >
           <NavbarLogo />
           <NavItems items={navItems} />
             <div className="flex items-center">
@@ -142,7 +143,7 @@ export default function Portfolio() {
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
-            {/* </div> */}
+
             </div>
           </MobileNavMenu>
         </MobileNav>
@@ -164,7 +165,7 @@ export default function Portfolio() {
                 Contact
               </Link>
             </nav> */}
-          </div>
+      </div>
           {/* <div className="flex flex-1 items-center justify-between md:justify-end md:space-x-2">
             <Sheet>
               <SheetTrigger asChild>
