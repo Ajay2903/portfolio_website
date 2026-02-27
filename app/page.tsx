@@ -8,6 +8,17 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  NavbarLogo,
+  NavbarButton,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+} from "@/components/ui/resizable-navbar";
 
 export type BlogMeta = {
   title: string
@@ -56,17 +67,87 @@ export default function Portfolio() {
       })
     }
   }, [])
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { name: "About", link: "#about" },
+    { name: "Blogs", link: "#blogs" },
+    { name: "Skills", link: "#skills" },
+    { name: "Projects", link: "#projects" },
+    { name: "Contact", link: "#contact" },
+  ];
    
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center">
-          <div className="mr-4 hidden md:flex">
-            <Link href="/" className="mr-6 flex items-center space-x-2">
+      <header className="sticky top-0 z-50 ">
+       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+          <div className="mr-4 flex w-full items-center justify-between">
+            {/* <Link href="/" className="mr-6 flex items-center space-x-2">
               <span className="font-bold">Ajay Tibrewal</span>
-            </Link>
-            <nav className="flex items-center space-x-6 text-sm font-medium">
+            </Link> */}
+            <Navbar>
+        {/* Desktop Navigation */}
+        <NavBody className="flex w-full items-center justify-between">
+          <NavbarLogo />
+          <NavItems items={navItems} />
+            <div className="flex items-center">
+                           <ThemeToggle />
+
+              <Link href="https://github.com/Ajay2903" target="_blank" rel="noreferrer" className="p-2">
+                <Github className="h-5 w-5" />
+    
+              </Link>
+              <Link href="https://linkedin.com/in/ajay-tibrewal" target="_blank" rel="noreferrer" className="p-2">
+                <Linkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
+              </Link>
+            </div>
+        
+        </NavBody>
+ 
+        {/* Mobile Navigation */}
+        <MobileNav>
+          <MobileNavHeader>
+            <NavbarLogo />
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
+          </MobileNavHeader>
+ 
+          <MobileNavMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+          >
+            {navItems.map((item, idx) => (
+              <a
+                key={`mobile-link-${idx}`}
+                href={item.link}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="relative text-neutral-600 dark:text-neutral-300"
+              >
+                <span className="block">{item.name}</span>
+              </a>
+            ))}
+            {/* <div className="flex w-full flex-col gap-4"> */}
+              <div className="flex items-center">
+                           <ThemeToggle />
+
+              <Link href="https://github.com/Ajay2903" target="_blank" rel="noreferrer" className="p-2">
+                <Github className="h-5 w-5" />
+    
+              </Link>
+              <Link href="https://linkedin.com/in/ajay-tibrewal" target="_blank" rel="noreferrer" className="p-2">
+                <Linkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
+              </Link>
+            {/* </div> */}
+            </div>
+          </MobileNavMenu>
+        </MobileNav>
+      </Navbar>
+            {/* <nav className="flex items-center space-x-6 text-sm font-medium">
               <Link href="#about" className="transition-colors hover:text-foreground/80">
                 About
               </Link>
@@ -82,9 +163,9 @@ export default function Portfolio() {
               <Link href="#contact" className="transition-colors hover:text-foreground/80">
                 Contact
               </Link>
-            </nav>
+            </nav> */}
           </div>
-          <div className="flex flex-1 items-center justify-between md:justify-end md:space-x-2">
+          {/* <div className="flex flex-1 items-center justify-between md:justify-end md:space-x-2">
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon" className="md:hidden">
@@ -128,7 +209,7 @@ export default function Portfolio() {
                 <span className="sr-only">LinkedIn</span>
               </Link>
             </nav>
-          </div>
+          </div> */}
         </div>
       </header>
       <main className="flex-1">
@@ -301,7 +382,7 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
-        <section id="blog" className="w-full py-12 md:py-24 lg:py-32">
+        <section id="blogs" className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Blogs</h2>
