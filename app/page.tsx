@@ -7,7 +7,11 @@ import ThemeToggle from "../components/theme-toggle"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { useTheme } from "next-themes"
+import { WavyBackground } from "../components/ui/wavy-background";
+
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+
 import {
   Navbar,
   NavBody,
@@ -28,9 +32,13 @@ export type BlogMeta = {
 }
 
 export default function Portfolio() {
+  const [mounted, setMounted] = useState(false)
+    const { resolvedTheme } = useTheme()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [blogs, setBlogs] = useState<BlogMeta[]>([])
+  console.log("Resolved Theme:", resolvedTheme)
   useEffect(() => {
+    setMounted(true)
     // Handle smooth scrolling for anchor links
     const handleAnchorClick = (e:any) => {
       const href = e.currentTarget.getAttribute("href")
@@ -77,7 +85,7 @@ export default function Portfolio() {
     { name: "Projects", link: "#projects" },
     { name: "Contact", link: "#contact" },
   ];
-   
+   console.log("Mounted:", mounted, "Resolved Theme:", resolvedTheme) 
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -214,15 +222,17 @@ export default function Portfolio() {
         </div>
       </header>
       <main className="flex-1">
+            <WavyBackground backgroundFill={mounted ? (resolvedTheme === "dark" ? "black" : "white") : "black"}>
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-          <div className="container px-4 md:px-6 mx-auto">
+         
+          <div className="container px-4 md:px-6 mx-auto ">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
               <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
+                <div className="space-y-2 z-20">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">Ajay Tibrewal</h1>
                   <p className="text-xl text-muted-foreground">Full Stack Developer</p>
                 </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                <div className="flex flex-col gap-2 min-[400px]:flex-row z-20">
                   <Link href="#contact">
                     <Button>Contact Me</Button>
                   </Link>
@@ -239,13 +249,16 @@ export default function Portfolio() {
                   height={400}
 
                   
-                  className="rounded-full object-cover border-4 border-border"
+                  className="rounded-full object-cover border-4 border-border z-20"
                   priority
                 />
               </div>
             </div>
           </div>
+          
+            
         </section>
+        </WavyBackground>
 
         <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-muted/40">
           <div className="container px-4 md:px-6 mx-auto">
