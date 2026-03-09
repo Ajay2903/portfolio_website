@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import { useTheme } from "next-themes"
 import { WavyBackground } from "../components/ui/wavy-background";
+import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
 
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 
@@ -80,8 +81,8 @@ export default function Portfolio() {
 
   const navItems = [
     { name: "About", link: "#about" },
-    { name: "Blogs", link: "#blogs" },
     { name: "Skills", link: "#skills" },
+    { name: "Blogs", link: "#blogs" },
     { name: "Projects", link: "#projects" },
     { name: "Contact", link: "#contact" },
   ];
@@ -100,7 +101,7 @@ export default function Portfolio() {
         <NavBody >
           <NavbarLogo />
           <NavItems items={navItems} />
-            <div className="flex items-center">
+            <div className="flex items-center relative z-50">
                            <ThemeToggle />
 
               <Link href="https://github.com/Ajay2903" target="_blank" rel="noreferrer" className="p-2">
@@ -140,11 +141,11 @@ export default function Portfolio() {
               </a>
             ))}
             {/* <div className="flex w-full flex-col gap-4"> */}
-              <div className="flex items-center">
+              <div className="flex items-center ">
                            <ThemeToggle />
 
               <Link href="https://github.com/Ajay2903" target="_blank" rel="noreferrer" className="p-2">
-                <Github className="h-5 w-5" />
+                <Github className="h-5 w-5 z-20" />
     
               </Link>
               <Link href="https://linkedin.com/in/ajay-tibrewal" target="_blank" rel="noreferrer" className="p-2">
@@ -223,7 +224,7 @@ export default function Portfolio() {
       </header>
       <main className="flex-1">
             <WavyBackground backgroundFill={mounted ? (resolvedTheme === "dark" ? "black" : "white") : "black"}>
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+        <section id="hero" className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
          
           <div className="container px-4 md:px-6 mx-auto ">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
@@ -429,19 +430,34 @@ export default function Portfolio() {
                 </p>
               </div>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 pt-8">
-                <Card>
-                  <CardHeader>
-                    <Image
-                      src="News3.png"
-                      alt="Project 1"
-                      width={400}
-                      height={200}
-                      className="rounded-md object-cover"
-                    />
-                    <CardTitle className="mt-4">News.AI</CardTitle>
-                    <CardDescription>Full-Stack News Aggregator with Real-Time User Personalization</CardDescription>
-                  </CardHeader>
-                  <CardContent>
+               
+
+                <CardContainer className="inter-var w-full">
+      <CardBody className="flex flex-col bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto w-full h-auto rounded-xl p-6 border  ">
+        <CardItem
+          translateZ="50"
+          className="text-xl font-bold text-neutral-600 dark:text-white"
+        >
+         New.AI
+        </CardItem>
+        <CardItem
+          as="p"
+          translateZ="60"
+          className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+        >
+         Full-Stack News Aggregator with Real-Time User Personalization
+        </CardItem>
+        <CardItem translateZ="100" className="w-full mt-4">
+          <img
+            src="News3.png"
+            height="1000"
+            width="1000"
+            className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+            alt="thumbnail"
+          />
+        </CardItem>
+         <div className="mt-4 flex-1">
+        
                     <div className="flex flex-wrap gap-2 mb-4">
                       <Badge variant="outline">Next.js</Badge>
                       <Badge variant="outline">Firebase</Badge>
@@ -451,98 +467,183 @@ export default function Portfolio() {
                     <p className="text-sm text-muted-foreground">
                     Built a dynamic news platform using Next.js and Firebase, integrating NewsAPI to deliver categorized global headlines. Features secure user authentication, real-time saved articles syncing, and responsive design.
                     </p>
-                  </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <Link href="https://github.com/Ajay2903/NewsAi" target="_blank" rel="noreferrer">
+                  
+                  </div>
+        <div className="flex justify-between items-center mt-4">
+          {/* <CardItem
+            translateZ={20}
+            as="a"
+            href="https://twitter.com/mannupaaji"
+            target="__blank"
+            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+          >
+            Try now →
+          </CardItem> */}
+
+          <Link href="https://github.com/Ajay2903/NewsAi" target="_blank" rel="noreferrer">
                       <Button variant="outline" size="sm">
                         <Github className="mr-2 h-4 w-4" />
                         Code
                       </Button>
                     </Link>
-                    <Link href="https://news-ai-lemon.vercel.app/" target="_blank" rel="noreferrer">
+          {/* <CardItem
+            translateZ={20}
+            as="button"
+            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+          >
+            Sign up
+          </CardItem> */}
+          <Link href="https://news-ai-lemon.vercel.app/" target="_blank" rel="noreferrer">
                       <Button size="sm">
                         <ExternalLink className="mr-2 h-4 w-4" />
                         Demo
                       </Button>
                     </Link>
-                  </CardFooter>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <Image
-                      src="/climapure.png?height=200&width=400"
-                      alt="Project 2"
-                      width={400}
-                      height={200}
-                      className="rounded-md object-cover"
-                    />
-                    <CardTitle className="mt-4">ClimaPure</CardTitle>
-                    <CardDescription>Responsive Weather & AQI Dashboard </CardDescription>
-                  </CardHeader>
-                  <CardContent>
+        </div>
+      </CardBody>
+    </CardContainer>
+                
+
+                <CardContainer className="inter-var w-full">
+      <CardBody className=" flex flex-col bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto w-full h-auto rounded-xl p-6 border  ">
+        <CardItem
+          translateZ="50"
+          className="text-xl font-bold text-neutral-600 dark:text-white"
+        >
+        ClimaPure
+        </CardItem>
+        <CardItem
+          as="p"
+          translateZ="60"
+          className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+        >
+         Responsive Weather & AQI Dashboard
+        </CardItem>
+        <CardItem translateZ="100" className="w-full mt-4">
+          <img
+            src="climapure.png"
+            height="1000"
+            width="1000"
+            className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+            alt="thumbnail"
+          />
+        </CardItem>
+         <div className="mt-4 flex-1">
+        
                     <div className="flex flex-wrap gap-2 mb-4">
-                      <Badge variant="outline">Vue.js</Badge>
+                       <Badge variant="outline">Vue.js</Badge>
                       <Badge variant="outline">Tailwind CSS</Badge>
                       <Badge variant="outline">Google Maps API</Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                    Developed a performant dashboard in Vue/Tailwind, integrating live weather and AQI data with secure, dynamic Google Maps API utilization.Solved complex, progressive layout challenges, implementing a dynamic 2-to-3 column grid for pixel-perfect, tailored display from mobile to ultrawide screens.
+                    </p>
+                  
+                  </div>
+        <div className="flex justify-between items-center mt-4">
+          {/* <CardItem
+            translateZ={20}
+            as="a"
+            href="https://twitter.com/mannupaaji"
+            target="__blank"
+            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+          >
+            Try now →
+          </CardItem> */}
+
+          <Link href="https://github.com/Ajay2903/NewsAi" target="_blank" rel="noreferrer">
+                      <Button variant="outline" size="sm">
+                        <Github className="mr-2 h-4 w-4" />
+                        Code
+                      </Button>
+                    </Link>
+          {/* <CardItem
+            translateZ={20}
+            as="button"
+            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+          >
+            Sign up
+          </CardItem> */}
+          <Link href="https://news-ai-lemon.vercel.app/" target="_blank" rel="noreferrer">
+                      <Button size="sm">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Demo
+                      </Button>
+                    </Link>
+        </div>
+      </CardBody>
+    </CardContainer>
                 
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                   Developed a performant dashboard in Vue/Tailwind, integrating live weather and AQI data with secure, dynamic Google Maps API utilization.Solved complex, progressive layout challenges, implementing a dynamic 2-to-3 column grid for pixel-perfect, tailored display from mobile to ultrawide screens.
-                    </p>
-                  </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <Link href="https://github.com/Ajay2903/MapQI" target="_blank" rel="noreferrer">
-                      <Button variant="outline" size="sm">
-                        <Github className="mr-2 h-4 w-4" />
-                        Code
-                      </Button>
-                    </Link>
-                    <Link href="https://map-qi.vercel.app/" target="_blank" rel="noreferrer">
-                      <Button size="sm">
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Demo
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <Image
-                      src="/dpa2.png?height=200&width=400"
-                      alt="Project 3"
-                      width={400}
-                      height={200}
-                      className="rounded-md object-cover"
-                    />
-                    <CardTitle className="mt-4">Health Link</CardTitle>
-                    <CardDescription>A full-stack healthcare solution for managing patients and prescriptions digitally.</CardDescription>
-                  </CardHeader>
-                  <CardContent>
+                <CardContainer className="inter-var w-full">
+      <CardBody className="flex flex-col bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto w-full h-auto rounded-xl p-6 border  ">
+        <CardItem
+          translateZ="50"
+          className="text-xl font-bold text-neutral-600 dark:text-white"
+        >
+        Health Link
+        </CardItem>
+        <CardItem
+          as="p"
+          translateZ="60"
+          className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+        >
+        A full-stack healthcare solution for managing patients and prescriptions digitally.
+        </CardItem>
+        <CardItem translateZ="100" className="w-full mt-4">
+          <img
+            src="dpa2.png"
+            height="1000"
+            width="1000"
+            className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+            alt="thumbnail"
+          />
+        </CardItem>
+         <div className="mt-4 flex-1">
+        
                     <div className="flex flex-wrap gap-2 mb-4">
-                      <Badge variant="outline">Flutter</Badge>
+                      <Badge variant="outline">Next.js</Badge>
                       <Badge variant="outline">Firebase</Badge>
-                      <Badge variant="outline">Cloud Firestore</Badge>
-                      <Badge variant="outline">Riverpod</Badge>
+                      <Badge variant="outline">Typescript</Badge>
+                      <Badge variant="outline">REST Api</Badge>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      A real-time doctor-patient platform enabling doctors to manage patients, send digital prescriptions, and chat securely. Built with Firebase for seamless authentication, data storage, and real-time messaging.
+                    A real-time doctor-patient platform enabling doctors to manage patients, send digital prescriptions, and chat securely. Built with Firebase for seamless authentication, data storage, and real-time messaging.
                     </p>
-                  </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <Link href="https://github.com/Ajay2903/Principles-of-Database-Systems-FInal-Project-SP-23" target="_blank" rel="noreferrer">
+                  
+                  </div>
+        <div className="flex justify-between items-center mt-4">
+          {/* <CardItem
+            translateZ={20}
+            as="a"
+            href="https://twitter.com/mannupaaji"
+            target="__blank"
+            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+          >
+            Try now →
+          </CardItem> */}
+
+          <Link href="https://github.com/Ajay2903/NewsAi" target="_blank" rel="noreferrer">
                       <Button variant="outline" size="sm">
                         <Github className="mr-2 h-4 w-4" />
                         Code
                       </Button>
                     </Link>
-                    <Link href="#" target="_blank" rel="noreferrer">
+          {/* <CardItem
+            translateZ={20}
+            as="button"
+            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+          >
+            Sign up
+          </CardItem> */}
+          <Link href="https://news-ai-lemon.vercel.app/" target="_blank" rel="noreferrer">
                       <Button size="sm">
                         <ExternalLink className="mr-2 h-4 w-4" />
                         Demo
                       </Button>
                     </Link>
-                  </CardFooter>
-                </Card>
+        </div>
+      </CardBody>
+    </CardContainer>
                 
               </div>
             </div>
