@@ -10,7 +10,8 @@ import { Badge } from "@/components/ui/badge"
 import { useTheme } from "next-themes"
 import { WavyBackground } from "../components/ui/wavy-background";
 import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
-
+import ExpandableCardDemo from "../components/expandable-card-demo-grid";
+import { BlogMeta } from "../components/expandable-card-demo-grid"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 
 import {
@@ -25,12 +26,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 
-export type BlogMeta = {
-  title: string
-  date: string
-  description: string
-  slug: string
-}
+
 
 export default function Portfolio() {
   const [mounted, setMounted] = useState(false)
@@ -405,17 +401,18 @@ export default function Portfolio() {
               Some of my latest writings and thoughts.
             </p>
           </div>
-          <div className="mt-8 grid gap-6 sm:grid-cols-1 md:grid-cols-3">
-            {blogs.map((blog) => (
-              <article key={blog.slug} className="border p-6 rounded-lg hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
-                <time className="block mb-2 text-gray-500">{new Date(blog.date).toLocaleDateString()}</time>
-                <p className="text-muted-foreground">{blog.description}</p>
-                <Link href={`/blogs/${blog.slug}`} className="mt-4 inline-block text-blue-600 hover:underline">
-                  Read more →
-                </Link>
-              </article>
-            ))}
+          <div className="mt-8 w-full">
+            {/* {blogs.map((blog) => ( */}
+              {/* // <article key={blog.slug} className="border p-6 rounded-lg hover:shadow-md transition-shadow">
+              //   <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
+              //   <time className="block mb-2 text-gray-500">{new Date(blog.date).toLocaleDateString()}</time>
+              //   <p className="text-muted-foreground">{blog.description}</p>
+              //   <Link href={`/blogs/${blog.slug}`} className="mt-4 inline-block text-blue-600 hover:underline">
+              //     Read more →
+              //   </Link>
+              // </article> */}
+              <ExpandableCardDemo blogs={blogs} />
+            {/* ))} */}
           </div>
         </div>
       </section>

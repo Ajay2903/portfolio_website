@@ -18,6 +18,8 @@ export async function GET() {
                 title: data.title,
                 date: data.date,
                 description: data.description,
+                summary: data.summary,
+                src: data.src || "/default-blog-image.jpg",
                 slug: filename.replace(".mdx", ""),
             }
         })
