@@ -426,11 +426,11 @@ export default function Portfolio() {
                   Here are some of my recent projects that showcase my skills and experiences.
                 </p>
               </div>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 pt-8">
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 pt-8 items-stretch">
                
 
-                <CardContainer className="inter-var w-full">
-      <CardBody className="flex flex-col bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto w-full h-auto rounded-xl p-6 border  ">
+                <CardContainer className="inter-var w-full h-full">
+      <CardBody className="flex flex-col bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto  w-full h-full rounded-xl p-6 border  ">
         <CardItem
           translateZ="50"
           className="text-xl font-bold text-neutral-600 dark:text-white"
@@ -501,8 +501,8 @@ export default function Portfolio() {
     </CardContainer>
                 
 
-                <CardContainer className="inter-var w-full">
-      <CardBody className=" flex flex-col bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto w-full h-auto rounded-xl p-6 border  ">
+                <CardContainer className="inter-var w-full h-full">
+      <CardBody className=" flex flex-col bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto w-full h-full rounded-xl p-6 border  ">
         <CardItem
           translateZ="50"
           className="text-xl font-bold text-neutral-600 dark:text-white"
@@ -548,7 +548,7 @@ export default function Portfolio() {
             Try now →
           </CardItem> */}
 
-          <Link href="https://github.com/Ajay2903/NewsAi" target="_blank" rel="noreferrer">
+          <Link href="https://github.com/Ajay2903/MapQI" target="_blank" rel="noreferrer">
                       <Button variant="outline" size="sm">
                         <Github className="mr-2 h-4 w-4" />
                         Code
@@ -561,7 +561,7 @@ export default function Portfolio() {
           >
             Sign up
           </CardItem> */}
-          <Link href="https://news-ai-lemon.vercel.app/" target="_blank" rel="noreferrer">
+          <Link href="https://map-qi.vercel.app/" target="_blank" rel="noreferrer">
                       <Button size="sm">
                         <ExternalLink className="mr-2 h-4 w-4" />
                         Demo
@@ -571,8 +571,8 @@ export default function Portfolio() {
       </CardBody>
     </CardContainer>
                 
-                <CardContainer className="inter-var w-full">
-      <CardBody className="flex flex-col bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto w-full h-auto rounded-xl p-6 border  ">
+                <CardContainer className="inter-var w-full h-full">
+      <CardBody className="flex flex-col bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto w-full h-full rounded-xl p-6 border  ">
         <CardItem
           translateZ="50"
           className="text-xl font-bold text-neutral-600 dark:text-white"
